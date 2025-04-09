@@ -1,7 +1,7 @@
 {
 	"id": "sqlseal-charts",
 	"name": "SQLSeal Charts",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"minAppVersion": "0.15.0",
 	"isDesktopOnly": false,
 	"description": "Charts extension for SQLSeal plugin. Generate pie charts, bar charts, line charts and more using data stored in your vault!",
