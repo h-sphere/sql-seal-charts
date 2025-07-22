@@ -11,8 +11,6 @@ interface Config {
     config: string
 }
 
-console.log((ecStat as any).transform)
-
 echarts.registerTransform((ecStat as any).transform.clustering);
 echarts.registerTransform((ecStat as any).transform.regression);
 echarts.registerTransform((ecStat as any).transform.histogram);
