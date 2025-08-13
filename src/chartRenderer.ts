@@ -39,6 +39,7 @@ export class ChartRenderer implements RendererConfig {
     render(config: Config, el: HTMLElement) {
         let isRendered: boolean = false
         let chart: echarts.ECharts | null = null
+        let resizeObserver: ResizeObserver | null = null
         return {
             render: ({ columns, data, flags }: { columns: string[], data: Record<string, unknown>[], flags: Record<string, boolean> }) => {
 
@@ -78,17 +79,40 @@ export class ChartRenderer implements RendererConfig {
                 el.empty()
                 const container = el.createDiv({ cls: 'sqlseal-charts-container' })
                 const chartDiv = container.createDiv()
+                
                 requestAnimationFrame(() => {
                     const box = container.getBoundingClientRect()
                     const width = box.width
                     const height = box.height
-                    chart = echarts.init(chartDiv, null, { height: height, width: width,  })
+                    chart = echarts.init(chartDiv, null, { height: height, width: width })
                     chart.setOption(configRecord)
                     isRendered = true
+                    
+                    // Set up ResizeObserver to handle container size changes
+                    resizeObserver = new ResizeObserver((entries) => {
+                        if (chart && entries.length > 0) {
+                            const entry = entries[0]
+                            const { width: newWidth } = entry.contentRect
+                            // Maintain 16:9 aspect ratio
+                            const newHeight = (newWidth * 9) / 16
+                            chart.resize({ width: newWidth, height: newHeight })
+                        }
+                    })
+                    resizeObserver.observe(container)
                 })
             },
             error: (error: string) => {
                 return createDiv({ text: error, cls: 'sqlseal-error' })
+            },
+            destroy: () => {
+                if (resizeObserver) {
+                    resizeObserver.disconnect()
+                    resizeObserver = null
+                }
+                if (chart) {
+                    chart.dispose()
+                    chart = null
+                }
             }
         }
     }
