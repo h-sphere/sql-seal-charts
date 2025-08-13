@@ -67,3 +67,217 @@
     height: calc(90vh - 40px);
     min-height: 400px;
 }
+
+/* Settings Panel Styles */
+.sqlseal-config-table-container {
+    margin: 20px 0;
+}
+
+.sqlseal-config-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-s);
+    overflow: hidden;
+}
+
+.sqlseal-config-table th,
+.sqlseal-config-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.sqlseal-config-table th {
+    background: var(--background-modifier-hover);
+    font-weight: 600;
+    color: var(--text-normal);
+}
+
+.sqlseal-config-table tr:last-child td {
+    border-bottom: none;
+}
+
+.sqlseal-config-table tr:hover {
+    background: var(--background-modifier-hover-alt);
+}
+
+.sqlseal-config-name {
+    font-weight: 500;
+    color: var(--text-normal);
+}
+
+.sqlseal-config-preview {
+    font-family: var(--font-monospace);
+    font-size: 12px;
+    background: var(--background-modifier-border);
+    padding: 4px 8px;
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sqlseal-config-actions {
+    white-space: nowrap;
+}
+
+.sqlseal-action-button {
+    padding: 4px 12px;
+    margin-right: 8px;
+    border: none;
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s ease;
+}
+
+.sqlseal-action-button:last-child {
+    margin-right: 0;
+}
+
+.sqlseal-empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* Editor Styles */
+.sqlseal-editor-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    padding-bottom: 16px;
+}
+
+.sqlseal-back-button {
+    padding: 6px 12px;
+    background: var(--interactive-normal);
+    border: none;
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    color: var(--text-normal);
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.sqlseal-back-button:hover {
+    background: var(--interactive-hover);
+}
+
+.sqlseal-json-editor-container {
+    margin: 20px 0;
+}
+
+.sqlseal-json-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-normal);
+}
+
+.sqlseal-json-textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-s);
+    background: var(--background-primary);
+    color: var(--text-normal);
+    font-family: var(--font-monospace);
+    font-size: 13px;
+    line-height: 1.4;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.sqlseal-json-textarea:focus {
+    border-color: var(--interactive-accent);
+    outline: none;
+}
+
+.sqlseal-json-textarea.error {
+    border-color: var(--text-error);
+}
+
+.sqlseal-editor-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--background-modifier-border);
+}
+
+.sqlseal-editor-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+
+/* Documentation Styles */
+.sqlseal-description-container {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--background-secondary);
+    border-radius: var(--radius-s);
+    border-left: 4px solid var(--interactive-accent);
+}
+
+.sqlseal-example-container {
+    margin-top: 12px;
+}
+
+.sqlseal-example-code {
+    font-family: var(--font-monospace);
+    font-size: 12px;
+    background: var(--background-modifier-border);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    color: var(--text-muted);
+}
+
+.sqlseal-feature-text {
+    color: var(--text-accent);
+    font-style: italic;
+}
+
+.sqlseal-json-label-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.sqlseal-json-help {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-style: italic;
+}
+
+/* Helper Button Styles */
+.sqlseal-helper-buttons {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+    justify-content: flex-start;
+}
+
+.sqlseal-helper-buttons button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
