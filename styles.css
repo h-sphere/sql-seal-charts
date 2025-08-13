@@ -1,11 +1,69 @@
 .sqlseal-charts-container {
-    display: grid;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     aspect-ratio: 16 / 9;
+    position: relative;
 }
 
-.sqlseal-charts-container > div {
+.sqlseal-chart-header {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.sqlseal-fullscreen-button {
+    background: var(--background-modifier-hover);
+    border: none;
+    border-radius: var(--radius-s);
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.sqlseal-fullscreen-button:hover {
+    background: var(--background-modifier-border-hover);
+    opacity: 1;
+}
+
+.sqlseal-chart-content {
     width: 100%;
     height: 100%;
+    flex: 1;
+}
+
+.sqlseal-fullscreen-modal {
+    z-index: 9999;
+}
+
+.sqlseal-fullscreen-modal .modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.sqlseal-fullscreen-modal .modal-content {
+    width: 95vw !important;
+    height: 90vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    padding: 20px !important;
+    margin: 2.5vh 2.5vw !important;
+    border-radius: 8px !important;
+}
+
+.sqlseal-fullscreen-chart-container {
+    width: 100%;
+    height: calc(90vh - 40px);
+    min-height: 400px;
 }
