@@ -1,5 +1,11 @@
 # 0.2.1 (2025-04-09)
 
+## 0.4.2
+
+### Patch Changes
+
+- 9775903: exposing columns in the advanced mode
+
 ## 0.4.1
 
 ### Patch Changes
