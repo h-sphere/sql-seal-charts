@@ -1,4 +1,4 @@
-import { App } from "obsidian";
+import { App, setIcon } from "obsidian";
 import { parseCode } from "./utils/configParser";
 import { prepareDataVariables } from "./utils/prepareDataVariables";
 import * as echarts from 'echarts';
@@ -6,6 +6,7 @@ import * as ecStat from 'echarts-stat';
 import type { RendererConfig } from "@hypersphere/sqlseal";
 import { ViewDefinition } from "@hypersphere/sqlseal/dist/src/grammar/parser";
 import { parseCodeAdvanced } from "./utils/advancedParser";
+import { FullScreenChartModal } from "./fullscreenModal";
 
 interface Config {
     config: string
@@ -34,6 +35,20 @@ export class ChartRenderer implements RendererConfig {
 
     validateConfig(config: string): Config {
         return { config: config.trim() }
+    }
+
+    private createFullscreenButton(container: HTMLElement, chartConfig: Record<string, any>) {
+        const fullscreenButton = container.createEl('button', { 
+            cls: 'sqlseal-fullscreen-button',
+            attr: { 'aria-label': 'Open chart in fullscreen' }
+        })
+        setIcon(fullscreenButton, 'maximize-2')
+        
+        fullscreenButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const modal = new FullScreenChartModal(this.app, chartConfig);
+            modal.open();
+        })
     }
 
     render(config: Config, el: HTMLElement) {
@@ -78,12 +93,16 @@ export class ChartRenderer implements RendererConfig {
 
                 el.empty()
                 const container = el.createDiv({ cls: 'sqlseal-charts-container' })
-                const chartDiv = container.createDiv()
+                
+                const chartHeader = container.createDiv({ cls: 'sqlseal-chart-header' })
+                const chartDiv = container.createDiv({ cls: 'sqlseal-chart-content' })
+                
+                this.createFullscreenButton(chartHeader, configRecord)
                 
                 requestAnimationFrame(() => {
-                    const box = container.getBoundingClientRect()
-                    const width = box.width
-                    const height = box.height
+                    const containerBox = container.getBoundingClientRect()
+                    const width = containerBox.width
+                    const height = containerBox.height
                     chart = echarts.init(chartDiv, null, { height: height, width: width })
                     chart.setOption(configRecord)
                     isRendered = true
