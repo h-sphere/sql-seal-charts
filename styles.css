@@ -134,20 +134,18 @@
 
 .sqlseal-config-actions {
     white-space: nowrap;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
 .sqlseal-action-button {
     padding: 4px 12px;
-    margin-right: 8px;
     border: none;
     border-radius: var(--radius-s);
     cursor: pointer;
     font-size: 12px;
     transition: background-color 0.2s ease;
-}
-
-.sqlseal-action-button:last-child {
-    margin-right: 0;
 }
 
 .sqlseal-empty-state {

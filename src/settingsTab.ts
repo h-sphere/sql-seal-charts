@@ -82,7 +82,7 @@ export class SQLSealChartsSettingTab extends PluginSettingTab {
         const headerRow = thead.createEl('tr');
         headerRow.createEl('th', { text: 'Name' });
         headerRow.createEl('th', { text: 'Preview' });
-        headerRow.createEl('th', { text: 'Actions' });
+        headerRow.createEl('th', { text: '' });
 
         // Table body
         const tbody = table.createEl('tbody');
