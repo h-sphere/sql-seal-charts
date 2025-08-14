@@ -1,5 +1,15 @@
 # 0.2.1 (2025-04-09)
 
+## 0.4.0
+
+### Minor Changes
+
+- 2999246: adding support for global configurations
+
+### Patch Changes
+
+- 22dbb66: now every chart can be opened in full screen
+
 ## 0.3.0
 
 ### Minor Changes
