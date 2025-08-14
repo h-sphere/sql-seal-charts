@@ -1,6 +1,6 @@
 {
   "name": "sqlseal-charts",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Chart extension for SQLSeal Obsidian plugin",
   "main": "main.js",
   "scripts": {
