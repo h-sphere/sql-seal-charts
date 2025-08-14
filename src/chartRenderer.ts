@@ -91,7 +91,7 @@ export class ChartRenderer implements RendererConfig {
                 let parsedConfig: Object = {}
                 if (isAdvancedMode) {
                     try {
-                        parsedConfig = parseCodeAdvanced({ functions, variables: allVariables }, config.config)
+                        parsedConfig = parseCodeAdvanced({ functions, variables, configs: globalVariables }, config.config)
                     } catch (e) {
                         console.error(e)
                         throw e
