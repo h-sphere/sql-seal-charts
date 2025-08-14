@@ -58,6 +58,7 @@
     "echarts-stat": "^1.2.0",
     "json5": "^2.2.3",
     "lodash": "^4.17.21",
+    "safe-identifier": "^0.4.2",
     "vitepress": "^1.6.3",
     "vue": "^3.5.13",
     "zod": "^3.24.2"
