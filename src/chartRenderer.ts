@@ -7,6 +7,8 @@ import type { RendererConfig } from "@hypersphere/sqlseal";
 import { ViewDefinition } from "@hypersphere/sqlseal/dist/src/grammar/parser";
 import { parseCodeAdvanced } from "./utils/advancedParser";
 import { FullScreenChartModal } from "./fullscreenModal";
+import { SQLSealChartsSettings } from "./settings";
+import * as JSON5 from "json5";
 
 interface Config {
     config: string
@@ -18,7 +20,7 @@ echarts.registerTransform((ecStat as any).transform.histogram);
 
 export class ChartRenderer implements RendererConfig {
 
-    constructor(private readonly app: App) {
+    constructor(private readonly app: App, private readonly settings: SQLSealChartsSettings) {
     }
 
     get viewDefinition(): ViewDefinition {
@@ -51,6 +53,23 @@ export class ChartRenderer implements RendererConfig {
         })
     }
 
+    private prepareGlobalConfigVariables(): Record<string, any> {
+        const globalVariables: Record<string, any> = {};
+        
+        this.settings.globalConfigs.forEach(config => {
+            try {
+                const parsedConfig = JSON5.parse(config.config);
+                globalVariables[config.name] = parsedConfig;
+            } catch (e) {
+                console.warn(`Failed to parse global configuration '${config.name}' with JSON5:`, e);
+                // Still make it available as a string if JSON5 parsing fails
+                globalVariables[config.name] = config.config;
+            }
+        });
+        
+        return globalVariables;
+    }
+
     render(config: Config, el: HTMLElement) {
         let isRendered: boolean = false
         let chart: echarts.ECharts | null = null
@@ -64,17 +83,21 @@ export class ChartRenderer implements RendererConfig {
                     throw new Error('To process JavaScript, set ADVANCED MODE flag')
                 }
                 const { functions, variables } = prepareDataVariables({ columns, data })
+                
+                // Add global configurations as variables
+                const globalVariables = this.prepareGlobalConfigVariables()
+                const allVariables = { ...variables, ...globalVariables }
 
                 let parsedConfig: Object = {}
                 if (isAdvancedMode) {
                     try {
-                        parsedConfig = parseCodeAdvanced({ functions, variables }, config.config)
+                        parsedConfig = parseCodeAdvanced({ functions, variables: allVariables }, config.config)
                     } catch (e) {
                         console.error(e)
                         throw e
                     }
                 } else {
-                    parsedConfig = parseCode(config.config, functions, variables) as Object
+                    parsedConfig = parseCode(config.config, functions, allVariables) as Object
                 }
                 if (!parsedConfig || typeof parsedConfig !== 'object') {
                     throw new Error('Issue with parsing config')
