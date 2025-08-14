@@ -1,5 +1,11 @@
 # 0.2.1 (2025-04-09)
 
+## 0.4.1
+
+### Patch Changes
+
+- c923785: fixed issue with configs not being exposed in ADVANCED MODE
+
 ## 0.4.0
 
 ### Minor Changes
