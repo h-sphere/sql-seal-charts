@@ -277,17 +277,17 @@ export class SQLSealChartsSettingTab extends PluginSettingTab {
                 
                 // Show success feedback
                 formatButton.textContent = '✓ Formatted';
-                formatButton.style.backgroundColor = '#4caf50';
+                formatButton.classList.add('sqlseal-format-success');
                 setTimeout(() => {
                     formatButton.textContent = 'Format JSON';
-                    formatButton.style.backgroundColor = '';
+                    formatButton.classList.remove('sqlseal-format-success');
                 }, 1500);
             } catch (e) {
                 formatButton.textContent = '✗ Invalid JSON5';
-                formatButton.style.backgroundColor = '#ff6b6b';
+                formatButton.classList.add('sqlseal-format-error');
                 setTimeout(() => {
                     formatButton.textContent = 'Format JSON';
-                    formatButton.style.backgroundColor = '';
+                    formatButton.classList.remove('sqlseal-format-error');
                 }, 2000);
             }
         });

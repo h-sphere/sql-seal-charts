@@ -281,3 +281,12 @@
     font-size: 12px;
     transition: all 0.2s ease;
 }
+
+/* Success and Error States for Format Button */
+.sqlseal-format-success {
+    background-color: #4caf50 !important;
+}
+
+.sqlseal-format-error {
+    background-color: #ff6b6b !important;
+}
